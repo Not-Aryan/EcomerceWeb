@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adding Product</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/add.css') }}">
+    <!-- <link rel="stylesheet" href="/static/css/add.css"> -->
+
+</head>
+<body>
+    <nav>
+        <h1 class="logo"><a href="/" class="logo">AJ</a></h1>
+
+        <ul>
+            <li><a href="#"><i class="fas fa-user"></i> {{ session['user-info']['firstName'] }}</a></li>
+            <li><a href="#"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+        </ul>
+    </nav>
+    
+    {% for message in get_flashed_messages() %}
+        <p class="flash" onload="a();">{{message}}</p>
+    {% endfor %}
+    
+    <div class="container">
+		<div class="login-content">
+			<form method="POST" action="/add">
+				<h2 class="title">Add a Product</h2>
+           		<div class="input-div">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>Product</h5>
+           		   		<input id="product" class="input" type="text" name="title" required>
+           		   </div>
+                </div>
+                <div class="input-div">
+                    <div class="i"> 
+                        <i class="fas fa-sticky-note"></i>
+                    </div>
+                    <div class="div">
+                        <h5>Description</h5>
+                        <input class="input" type="text" name="description" required>
+                    </div>
+                </div>
+
+           		<div class="input-div">
+           		   <div class="i"> 
+           		    	<i class="fas fa-dollar-sign"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<h5>Price</h5>
+           		    	<input class="input" type="number" name="price" required>
+            	   </div>
+                </div>
+
+                <div class="input-div">
+                    <div class="i"> 
+                         <i class="fas fa-check"></i>
+                    </div>
+                    <div class="div">
+                         <h5>Avalible Stock</h5>
+                         <input class="input" type="number" name="quantity" required>
+                    </div>
+                </div>
+
+                <div id="img-url" class="input-div">
+                    <div class="i"> 
+                         <i class="fas fa-images"></i>
+                    </div>
+                    <div class="div">
+                         <h5>Image Url</h5>
+                         <input class="input" id="img-input" type="text" name="image">
+                    </div>
+                </div>
+                <span class="or" href="#">Or</span>
+
+                <a class="unsplash go-back">Use Unsplash <i class="fas fa-camera"></i></a>
+
+
+                <input type="submit" class="btn" value="Submit">
+
+
+                <a href="/" class="btn go-back">Go Back</a>
+                
+            </form>
+        </div>
+    </div>
+
+    <div class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <input type="text" class="search" palceholder="Search Photos">
+            <button onclick="Search()">Search</button>
+            <div class="results">
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/form.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/unsplash-modal.js') }}"></script>
+
+</body>
+</html>

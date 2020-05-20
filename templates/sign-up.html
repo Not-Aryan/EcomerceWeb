@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aryans Ecommerce Site</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}"> -->
+    <link rel="stylesheet" href="/static/css/sign-up.css">
+</head>
+<body>
+    <div class="wrapper">
+        <nav>
+            <h1 class="logo"><a href="/" class="logo">AJ</a></h1>
+            <ul>
+                <li><a href="/login" onclick="show()"><i class="fas fa-user"></i> Sign In</a></li>
+                <li><a href="/checkout"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+            </ul>
+        </nav>
+
+        {% for message in get_flashed_messages() %}
+            <p class="flash">{{message}}</p>
+        {% endfor %}
+
+
+        <div class="sign-in">
+            <form method="POST" action="">
+                <h2 class="title">Sign Up</h2>
+                   <div class="input-div">
+                      <div class="i">
+                              <i class="fas fa-user"></i>
+                      </div>
+                      <div class="div">
+                              <h5>Name</h5>
+                              <input name="Name" type="text" class="input">
+                      </div>
+                   </div>
+                   <div class="input-div">
+                      <div class="i"> 
+                           <i class="fas fa-at"></i>
+                      </div>
+                      <div class="div">
+                           <h5>Email</h5>
+                           <input name = "Email" type="text" class="input">
+                      </div>
+                    </div>
+                    <div class="input-div">
+                        <div class="i"> 
+                             <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="div">
+                             <h5>Password</h5>
+                             <input name = "Password" type="password" class="input">
+                        </div>
+                    </div>
+                <a class="sign-up" href="#">Sign In</a>
+                <input type="submit" class="btn" value="Sign Up">
+            </form>
+        </div>
+    </div>
+
+
+    <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/form.js') }}"></script> -->
+    <script type="text/javascript" src="/static/js/form.js"></script>
+</body>
+</html>
+
+

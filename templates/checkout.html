@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buy</title>
+    <style>
+    .mystyle{
+        margin: 2em;
+        border: 1px solid black;
+        padding: 2em;
+        width: 22.5%;
+    }
+    </style>
+
+</head>
+
+<body>
+
+{% extends 'bootstrap/base.html' %}
+{% block title %}
+
+Check Stuff Out
+
+{% endblock %}
+
+{% block content%}
+
+
+<h1 class="jumbotron text-center" class="text-center">Checkout</h1>
+
+<button class="btn-warning" type="button"><a href="/buy" methods="GET">Empty Cart?</a></button>
+
+<button class="btn-warning" type="button"><a href="/">Go Back</a></button>
+
+<div class="container">
+  <h2>Checkout</h2>
+  <table class="table table-hover">
+    <thead>
+      <tr class="info">
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Quantity Bought</th>
+        <th>Total Price</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    {% for product in products %}
+      <tr>
+        <td>{{ product['title'] }}</td>
+        <td>{{ product['description'] }}</td>
+        <td>${{ product['price'] }} </td>
+        <td>{{ product['bought'] }} </td>
+        <td>${{ product['item-total'] }} </td>
+      </tr>
+    {% endfor %}
+    <tr>
+      <td>Total</td>
+      <td>${{ total }}</td>
+    </tr>
+
+
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
+
+
+
+</body>
+</html>
