@@ -1,0 +1,282 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400|Poppins:300,400,800&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600');
+
+@font-face {
+  font-family: "rz-regular";
+  src: url('/static/fonts/rz-regular.woff2')format('woff2');
+}
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+    font-family: 'Poppins';
+    transition: .3s;
+}
+
+a:hover {
+    color: #60CCFF;
+}
+
+
+/* Navigation  */
+
+nav {
+    display: flex;
+    padding: 3px;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.logo {
+    font-family: Poppins;
+    font-weight: bold;
+    color: #ffc7a0;
+    font-size: 3.5rem;
+    margin-left: 10px;
+}
+
+nav ul {
+    list-style: none;
+    float: right;
+    margin-right: 20px;
+}
+
+nav ul li {
+    display: inline-block;
+    justify-content: center;
+}
+
+nav ul li a {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-left: 10px;
+    margin-right: 5px;
+    color: black;
+}
+
+.cart-num {
+  position: relative;
+  bottom: 10px;
+  right: 5px;
+  background-color: #ffc7a0;
+  border-radius: 25px;
+  font-size: 20px;
+  font-family: Poppins;
+  display: inline-block;
+  height:30px;
+  width: 30px;
+  text-align: center;
+
+}
+
+/* Main Page */
+
+.buy {
+    display: block;
+    font-family: Poppins;
+    font-size: 65px;
+    margin-left: 50px;
+}
+
+.p-img {
+    width: 150px;
+    height: 240px;
+    border-radius: 10px;
+}
+
+/* Table Stuff */
+
+
+table {
+    position: relative;
+    left: 17.5%;
+}
+
+  
+.content-table {
+font-family: Poppins;
+border-collapse: collapse;
+margin: 10px 0 25px;
+font-size: 0.9em;
+min-width: 400px;
+border-radius: 5px 5px 0 0;
+overflow: hidden;
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+tr {
+    font-size: 18px;
+}
+
+.descrip{
+    width: 50px;
+}
+
+.content-table thead tr {
+font-family: "rz-regular";
+background-color: #60CCFF;
+color: #ffffff;
+text-align: left;
+font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+padding: 12px 15px;
+}
+
+.content-table tbody tr {
+border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: 2px solid #60CCFF;
+}
+
+.content-table tbody tr.active-row {
+    font-weight: bold;
+    color: #60CCFF;
+}
+
+.total-price {
+    font-size: 30px;
+    /* float: right; */
+}
+
+#paypal-button {
+    position: absolute;
+    top: 85.8%;
+    left: 70%;
+}
+
+
+
+/* Checkout Info Not Used Anymore*/
+
+/* 
+h1 {
+    font-family: supreme;
+    font-weight: lighter;
+    color: white;
+    margin: 4px 5px 4px 10px;
+} */
+
+/* .container {
+    position: relative;
+    left: 100px;
+    bottom: 200px;
+    display: inline-block;
+    border: 2px solid #60CCFF;
+    width: 400px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 5px;
+}
+
+input {
+    align-self: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-family: Poppins;
+    width: 294px;
+    height: 40px;
+    margin-top: 4px;
+    color: #111;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 3px;
+    box-sizing: inherit;
+    display: block;
+}
+
+.address {
+    width: 168px;
+    display: inline-block;
+    margin-right: 0;
+}
+
+.unit {
+    width: 120px;
+    display: inline-block;
+    margin-left: 3px;
+}
+
+.zip {
+    width: 51.9px;
+    display: inline-block;
+    margin-right: 0;
+}
+
+.city {
+    width: 154px;
+    display: inline;
+    margin-left: 3px;
+    margin-right: 0;
+}
+
+select {
+    color: #111;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    height: 41px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-family: Poppins;
+}
+
+.state {
+    margin-left: 3px;
+    width: 75px;
+    padding-left: 10px;
+}
+
+.cc_month, .cc_year, .cvv {
+    margin-top: 3px;
+}
+
+.cc_month {
+    margin-left: 10px;
+}
+
+.cc_month, .cc_year {
+    padding: 14px 10px 11px 10px;
+}
+
+.cvv {
+    position: relative;
+    top: -2px;
+    width: 60px;
+    display: inline-block;
+    margin-left: 3px;
+}
+
+.submit {
+    border: 3px solid white;
+    background-color: #ED1C24;
+    color: white;
+    font-family: supreme2;
+    font-weight: lighter;
+    font-size: 20px;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+

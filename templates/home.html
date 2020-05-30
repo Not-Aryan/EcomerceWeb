@@ -13,7 +13,7 @@
             <h1 class="logo"><a href="/" class="logo">AJ</a></h1>
             <ul>
                 <li><a href="/login"><i class="fas fa-user"></i> {{ placeholder }}</a></li>
-                <li><a href="/checkout"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+                <li><a href="/checkout"><i class="fas fa-shopping-cart"></i> Cart</a> <span class="cart-num">{{ number }}</span> </li>
             </ul>
         </nav>
         <section class="main">
@@ -30,8 +30,10 @@
         <p class="flash" style="display: none;" onload="a();">{{message}}</p>
     {% endfor %}
 
+    <!-- Tried to Create A Sign In Modal, But Decided it would be better just to put it on a differetn page -->
 
-    <div class="sign-in">
+
+    <!-- <div class="sign-in">
         <form action="">
             <a href="#" class="x" onclick="show()"><i class="fas fa-times"></i></a>
             <h2 class="title">Sign In</h2>
@@ -56,7 +58,7 @@
             <a class="sign-up" href="#">Sign Up</a>
             <input type="submit" class="btn" value="Login">
         </form>
-    </div>
+    </div> -->
 
 
 

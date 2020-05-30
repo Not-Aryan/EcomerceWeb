@@ -2,72 +2,105 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Buy</title>
-    <style>
-    .mystyle{
-        margin: 2em;
-        border: 1px solid black;
-        padding: 2em;
-        width: 22.5%;
-    }
-    </style>
-
+    <title>Products</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/checkout.css">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/buy.css') }}"> -->
 </head>
-
 <body>
+    <nav>
+        <h1 class="logo"><a href="/" class="logo">AJ</a></h1>
 
-{% extends 'bootstrap/base.html' %}
-{% block title %}
+        <ul>
+            <li><a href="/logout"><i class="fas fa-user"></i> Sign Out</a></li>
+            <li><a href="/checkout"><i class="fas fa-shopping-cart"></i> Cart</a> <span class="cart-num">{{ number }}</span> </li>
+        </ul>
+    </nav>
+    <section class="main">
+      <h1 class="buy">Checkout</h1>
+      <table class="content-table">
+        <thead>
+          <tr class="info">
+            <th>Product</th>
+            <th>Name</th>
+            <th class="descrip">Description</th>
+            <th>Price</th>
+            <th>Quantity Bought</th>
+            <th>Total Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for product in products %}
+            <tr>
+              <td><img class="p-img" src="{{ product.image}}" alt=""></td>
+              <td>{{ product['title'] }}</td>
+              <td>{{ product['description'] }}</td>
+              <td>${{ product['price'] }} </td>
+              <td>{{ product['bought'] }} </td>
+              <td>${{ product['item-total'] }} </td>
+            </tr>
+          {% endfor %}
+          <tr class="total-price">
+            <td>Total: ${{ total }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <div id="paypal-button"></div>
 
-Check Stuff Out
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script>
+        var CREATE_PAYMENT_URL  = 'http://127.0.0.1:5000/payment';
+        var EXECUTE_PAYMENT_URL = 'http://127.0.0.1:5000/execute';
+    
+        paypal.Button.render({
+            style: {
+              color: 'blue',
+              shape: "rect",
+              height: 55,
+              label:  'paypal'
+            },
+    
+            env: 'sandbox', // Or 'sandbox'
+    
+            commit: true, // Show a 'Pay Now' button
+    
+            payment: function() {
+                return paypal.request.post(CREATE_PAYMENT_URL).then(function(data) {
+                    return data.paymentID;
+                });
+            },
+    
+            onAuthorize: function(data) {
+                return paypal.request.post(EXECUTE_PAYMENT_URL, {
+                    paymentID: data.paymentID,
+                    payerID:   data.payerID
+                }).then(function(res) {
+                    $.ajax({
+                        type: "POST",
+                        url: "http://127.0.0.1:5000/checkout",
+                        data: JSON.stringify("UselsssText"),
+                        dataType: 'json'
+                    }).done(function() {
+                        console.log("DONE");
+                    });
+                    console.log(res.success);
 
-{% endblock %}
+                    window.location.href = "http://127.0.0.1:5000/";
 
-{% block content%}
-
-
-<h1 class="jumbotron text-center" class="text-center">Checkout</h1>
-
-<button class="btn-warning" type="button"><a href="/buy" methods="GET">Empty Cart?</a></button>
-
-<button class="btn-warning" type="button"><a href="/">Go Back</a></button>
-
-<div class="container">
-  <h2>Checkout</h2>
-  <table class="table table-hover">
-    <thead>
-      <tr class="info">
-        <th>Name</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th>Quantity Bought</th>
-        <th>Total Price</th>
-      </tr>
-    </thead>
-    <tbody>
-
-    {% for product in products %}
-      <tr>
-        <td>{{ product['title'] }}</td>
-        <td>{{ product['description'] }}</td>
-        <td>${{ product['price'] }} </td>
-        <td>{{ product['bought'] }} </td>
-        <td>${{ product['item-total'] }} </td>
-      </tr>
-    {% endfor %}
-    <tr>
-      <td>Total</td>
-      <td>${{ total }}</td>
-    </tr>
-
-
-    </tbody>
-  </table>
-</div>
-
-{% endblock %}
-
+                    // The payment is complete!
+                    // You can now show a confirmation message to the customer
+                });
+            }
+        }, '#paypal-button');
 
 
+        
+        // .done(function() {
+        //     console.log("DONE");
+        // });
+
+    </script>
 </body>
 </html>

@@ -12,8 +12,8 @@
         <h1 class="logo"><a href="/" class="logo">AJ</a></h1>
 
         <ul>
-            <li><a href="#"><i class="fas fa-user"></i> {{ session['user-info']['firstName'] }}</a></li>
-            <li><a href="#"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+            <li><a href="/logout"><i class="fas fa-user"></i> Sign Out</a></li>
+            <li><a href="/checkout"><i class="fas fa-shopping-cart"></i> Cart</a> <span class="cart-num">{{ number }}</span> </li>
         </ul>
     </nav>
 
@@ -26,31 +26,37 @@
 
     <section class="main">
         <h1 class="buy">Browse Products</h1>
+        <form method="POST" action="">
 
-        <div class="cards">
-            {% for product in products %}
-            <div class="total">
-                <div class="card" style="background-image: url('{{ product.image}}');
-                                        background-size: cover;">
-                    <div class="content">
-                        <h2 class="title">{{ product['title'] }}</h2>
-                        <p class="copy">{{ product['description'] }}</p>
+
+            <div class="cards">
+                {% for product in products %}
+                <div class="total">
+                    <div class="card" style="background-image: url('{{ product.image}}');
+                                            background-size: cover;">
+                        <div class="content">
+                            <h2 class="title">{{ product['title'] }}</h2>
+                            <p class="copy">{{ product['description'] }}</p>
+                        </div>
+
                     </div>
-
+                    <h2 class="price">${{ product['price'] }}</h2>
+                    <code> 
+                        <select class="amt" name="{{ product['_id']}}">
+                            <option value="0">None</option>
+                            {% for n in range(1, product['quantity']|int+1) %}
+                                <option value="{{n}}">{{n}}</option>
+                            {% endfor %}
+                        </select>
+                    </code>
                 </div>
-                <h2 class="price">${{ product['price'] }}</h2>
-                <code> 
-                    <select class="amt" name="{{ product['_id']}}">
-                        <option value="0">None</option>
-                        {% for n in range(1, product['quantity']|int+1) %}
-                            <option value="{{n}}">{{n}}</option>
-                        {% endfor %}
-                    </select>
-                </code>
+
+
+                {% endfor %}
+            
             </div>
-
-
-            {% endfor %}
+            <button class="atc" type = "submit">Add to Cart</button>
+        </form>
             
             <!-- <div class="card">
                 <div class="content">
@@ -77,11 +83,6 @@
                 <select name="" id=""></select>
             </div> -->
 
-        </div>
-
-        <form method="POST" action="">
-            <button class="atc" type = "submit">Add to Cart</button>
-        </form>
 
 
         <!-- <form method="POST" action="">
@@ -112,8 +113,3 @@
 
 </body>
 </html>
-
-
-<!--<form method="GET" action="/" class="text-center" class="form-inline">-->
-<!--    <input class="btn-warning" type="submit" value="Go Back">-->
-<!--</form>-->
